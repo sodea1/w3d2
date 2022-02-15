@@ -56,6 +56,10 @@ class Board
 
   end
 
+  def play_move (pos)
+    self[pos].face_up = true
+  end
+
 
 
 

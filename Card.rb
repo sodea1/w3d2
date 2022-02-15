@@ -10,9 +10,9 @@ class Card
     @face_up = false
   end
 
-  def display
-    p self.value
-  end
+  # def display
+  #   p self.value
+  # end
 
   # def == (card2)
   #   self.value == card2.value
