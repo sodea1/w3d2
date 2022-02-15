@@ -1,24 +1,59 @@
+require_relative "./Card.rb"
+require "byebug"
 class Board
+  attr_accessor :grid
 
-  def initialize
-    @grid=Array.new(2){Array.new(2)}
-    @alphabet = ("A".."Z").to_a
+  def initialize (size=4)
+    if size.even?
+      @grid=Array.new(size){Array.new(size)}
+    else
+      raise "invalid dimensions"
+    end
+  end
+  
+
+  def [](pos) # 1, 2
+    row, col = pos
+    @grid[row][col]
+  end
+
+  def []=(pos, val) # 1, 2
+    row, col = pos
+    @grid[row][col] = val
   end
 
   def populate
+    # byebug
     while @grid.flatten.include?(nil)
-      random_letter = @alphabet.sample
-      while @grid.flatten.count(random_letter) < 2
+      # random_letter = @alphabet.sample
+      random_card = Card.new
+      while @grid.flatten.count(random_card) < 2
         row = rand(0...@grid.length)
         col = rand(0...@grid[0].length)
-        @grid[row][col]=random_letter if @grid[row][col].nil?
+        pos = row, col
+        self[pos]=random_card if self[pos].nil?
       end
     end
-    # @grid
+    true
   end
 
   def render
-    
+    @grid.each do |row|
+      temp=[]
+      row.each do |card|
+        if card.face_up
+          temp << card.value
+        else
+          temp << " "
+        end
+      end
+      puts temp.join(" ")
+    end
+    true
+  end
+
+  def won?
+
   end
 
 
