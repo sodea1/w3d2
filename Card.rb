@@ -1,5 +1,5 @@
 class Card
-  attr_reader :value,:face_up
+  attr_accessor :value,:face_up
   ALPHABET = ("A".."Z").to_a
   def initialize
     @value = ALPHABET.sample
@@ -15,6 +15,7 @@ class Card
   # end
 
   # def == (card2)
+  #   # self.value == card2.value
   #   self.value == card2.value
   # end
 
